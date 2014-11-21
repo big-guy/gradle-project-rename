@@ -1,0 +1,30 @@
+rootProject.name = 'example'
+
+/*
+include 'app:businesslogic:api'
+include 'app:businesslogic:impl'
+include 'app:infrastructure:domainmodel:api'
+include 'app:infrastructure:domainmodel:impl'
+*/
+
+include 'businesslogic-api'
+include 'businesslogic-impl'
+include 'infrastructure:domainmodel-api'
+include 'infrastructure:domainmodel-impl'
+
+
+def fixupPaths(project) {
+   def baseDir = "app/${project.parent.name}/"
+   def projectDirName = baseDir + project.name.replace("-", "/")
+   project.projectDir = new File(settingsDir, projectDirName)
+}
+
+def subprojects(start=rootProject, closure) {
+   if (start!=rootProject) {
+      closure(start)
+   }
+
+   start.children.each { subprojects(it, closure) }
+}
+
+subprojects { fixupPaths it }

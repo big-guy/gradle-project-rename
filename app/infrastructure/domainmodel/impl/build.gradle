@@ -1,0 +1,5 @@
+dependencies { 
+   compile project(":businesslogic-api")
+   compile project(":infrastructure:domainmodel-api") 
+   compile project(":businesslogic-impl") 
+}

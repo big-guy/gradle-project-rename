@@ -1,0 +1,12 @@
+"""
+:app:businesslogic:impl depends on :app:businesslogic:api
+:app:domainmodel:api depends on :app:businesslogic:api
+:app:domainmodel:impl depends on :app:domainmodel:api
+:app:domainmodel:impl depends on :app:businesslogic:impl
+"""
+
+allprojects { 
+   apply plugin: 'java' 
+   group = 'my.company'
+}
+
